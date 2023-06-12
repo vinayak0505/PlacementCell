@@ -1,18 +1,19 @@
-const http = require('http');
+const express = require('express');
+const router = require('./routes');
+
+const app = express();
 const port = 8000;
-const fs = require('fs');
 
-function requestHandler(req, res) {
-    console.log("hello");
-    res.writeHead(200, {'content-type': 'text/html'})
-}
-const server = http.createServer(requestHandler);
 
-server.listen(port, function (err) {
-    if (err) {
-        console.log(err);
+
+// use express router
+app.use('/',router);
+
+app.listen(port, function (err) {
+    if(err){
+        console.log('err: ', err);
         return;
-    }
+    } 
 
-    console.log("server is running on port: ", port);
+    console.log('console is running on port ', port);
 })
